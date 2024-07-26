@@ -31,10 +31,11 @@ function Row(props) {
         if(trailerUrl){
             setTrailerUrl('');
         }else{
-            movieTrailer(movie?.name || "")
+            movieTrailer(movie?.name || movie?.title || movie?.original_name)
             .then(url=>{
                 //https://www.youtube.com/watch?v=videoId(which we will need)
                 const urlParams= new URLSearchParams(new URL(url).search);
+                console.log(urlParams)
                 setTrailerUrl(urlParams.get("v"));
             }).catch((error)=>console.log(error));
         }
